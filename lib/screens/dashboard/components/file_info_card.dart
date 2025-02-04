@@ -1,6 +1,8 @@
 import 'package:admin/models/my_files.dart';
+import 'package:admin/models/theme_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 import '../../../constants.dart';
 
@@ -14,10 +16,11 @@ class FileInfoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeNotifier>(context).currentTheme;
     return Container(
       padding: EdgeInsets.all(defaultPadding),
       decoration: BoxDecoration(
-        color: secondaryColor,
+        color: theme.cardColor,
         borderRadius: const BorderRadius.all(Radius.circular(10)),
       ),
       child: Column(
@@ -41,7 +44,7 @@ class FileInfoCard extends StatelessWidget {
                       info.color ?? Colors.black, BlendMode.srcIn),
                 ),
               ),
-              Icon(Icons.more_vert, color: Colors.white54)
+              Icon(Icons.more_vert, color: theme.primaryColor)
             ],
           ),
           Text(
@@ -56,19 +59,9 @@ class FileInfoCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                "${info.numOfFiles} Files",
-                style: Theme.of(context)
-                    .textTheme
-                    .bodySmall!
-                    .copyWith(color: Colors.white70),
-              ),
+              Text("${info.numOfFiles} Files"),
               Text(
                 info.totalStorage!,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodySmall!
-                    .copyWith(color: Colors.white),
               ),
             ],
           )
@@ -81,7 +74,7 @@ class FileInfoCard extends StatelessWidget {
 class ProgressLine extends StatelessWidget {
   const ProgressLine({
     Key? key,
-    this.color = primaryColor,
+    this.color = DarkModeTheme.bodyTextColor,
     required this.percentage,
   }) : super(key: key);
 

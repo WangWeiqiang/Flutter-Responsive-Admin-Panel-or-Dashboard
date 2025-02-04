@@ -1,5 +1,7 @@
+import 'package:admin/models/theme_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 class SideMenu extends StatelessWidget {
   const SideMenu({
@@ -8,6 +10,7 @@ class SideMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeNotifier>(context).currentTheme;
     return Drawer(
       child: ListView(
         children: [
@@ -54,6 +57,21 @@ class SideMenu extends StatelessWidget {
             svgSrc: "assets/icons/menu_setting.svg",
             press: () {},
           ),
+          SizedBox(
+            height: 30,
+          ),
+          Center(
+            child: ElevatedButton(
+              onPressed: () {
+                Provider.of<ThemeNotifier>(context, listen: false)
+                    .switchTheme();
+              },
+              child: Icon(
+                Icons.light_mode_sharp,
+                size: 30,
+              ),
+            ),
+          )
         ],
       ),
     );
@@ -74,6 +92,7 @@ class DrawerListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeNotifier>(context).currentTheme;
     return ListTile(
       onTap: press,
       horizontalTitleGap: 0.0,
@@ -84,7 +103,6 @@ class DrawerListTile extends StatelessWidget {
       ),
       title: Text(
         title,
-        style: TextStyle(color: Colors.white54),
       ),
     );
   }

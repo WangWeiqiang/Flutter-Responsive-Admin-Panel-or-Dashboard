@@ -1,4 +1,6 @@
+import 'package:admin/models/theme_notifier.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../constants.dart';
 import 'chart.dart';
@@ -11,10 +13,11 @@ class StorageDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeNotifier>(context).currentTheme;
     return Container(
       padding: EdgeInsets.all(defaultPadding),
       decoration: BoxDecoration(
-        color: secondaryColor,
+        color: theme.cardColor,
         borderRadius: const BorderRadius.all(Radius.circular(10)),
       ),
       child: Column(
