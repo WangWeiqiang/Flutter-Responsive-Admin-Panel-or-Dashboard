@@ -1,3 +1,4 @@
+import 'package:admin/models/theme.dart';
 import 'package:admin/models/theme_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -15,7 +16,9 @@ class SideMenu extends StatelessWidget {
       child: ListView(
         children: [
           DrawerHeader(
-            child: Image.asset("assets/images/logo.png"),
+            child: ProfileCard(),
+            padding: EdgeInsets.zero,
+            margin: EdgeInsets.zero,
           ),
           DrawerListTile(
             title: "Dashboard",
@@ -67,13 +70,57 @@ class SideMenu extends StatelessWidget {
                     .switchTheme();
               },
               child: Icon(
-                Icons.light_mode_sharp,
+                theme == lightTheme
+                    ? Icons.light_mode_sharp
+                    : Icons.dark_mode_sharp,
                 size: 30,
               ),
             ),
           )
         ],
       ),
+    );
+  }
+}
+
+class ProfileCard extends StatelessWidget {
+  const ProfileCard({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeNotifier>(context).currentTheme;
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            //cicle shape
+            shape: BoxShape.circle,
+            color: theme.cardColor,
+            border: Border.all(
+              color: theme.cardColor,
+              width: 5,
+            ),
+          ),
+          child: CircleAvatar(
+            radius: 50,
+            backgroundColor: theme.cardColor,
+            backgroundImage: AssetImage("assets/images/profile_pic.png"),
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text("Angelina Jolie"),
+            ),
+            Icon(Icons.more_vert),
+          ],
+        )
+      ],
     );
   }
 }
@@ -92,7 +139,6 @@ class DrawerListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Provider.of<ThemeNotifier>(context).currentTheme;
     return ListTile(
       onTap: press,
       horizontalTitleGap: 0.0,
