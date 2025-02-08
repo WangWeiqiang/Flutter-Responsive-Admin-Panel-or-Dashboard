@@ -16,9 +16,9 @@ final ThemeData lightTheme = ThemeData(
 final ThemeData darkTheme = ThemeData(
   brightness: Brightness.dark,
   primaryColor: Colors.blue,
-  scaffoldBackgroundColor: Colors.black,
-  canvasColor: const Color.fromARGB(136, 32, 32, 32),
-  cardColor: const Color.fromARGB(221, 43, 43, 43),
+  scaffoldBackgroundColor: const Color.fromARGB(255, 0, 4, 17),
+  canvasColor: const Color.fromARGB(135, 1, 0, 29),
+  cardColor: const Color.fromARGB(221, 16, 22, 50),
   textTheme: TextTheme(
     bodyLarge: TextStyle(color: Colors.white, fontSize: 20),
     bodyMedium: TextStyle(color: Colors.white, fontSize: 16),

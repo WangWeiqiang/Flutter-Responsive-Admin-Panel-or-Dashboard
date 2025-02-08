@@ -1,7 +1,7 @@
 import 'package:admin/responsive.dart';
 import 'package:admin/screens/dashboard/components/my_fields.dart';
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
 import '../../constants.dart';
 import 'components/header.dart';
 
@@ -29,16 +29,15 @@ class DashboardScreen extends StatelessWidget {
                       MyFiles(),
                       SizedBox(height: defaultPadding),
                       RecentFiles(),
-                      if (Responsive.isMobile(context))
+                      if (GetPlatform.isMobile)
                         SizedBox(height: defaultPadding),
-                      if (Responsive.isMobile(context)) StorageDetails(),
+                      if (GetPlatform.isMobile) StorageDetails(),
                     ],
                   ),
                 ),
-                if (!Responsive.isMobile(context))
-                  SizedBox(width: defaultPadding),
+                if (!GetPlatform.isMobile) SizedBox(width: defaultPadding),
                 // On Mobile means if the screen is less than 850 we don't want to show it
-                if (!Responsive.isMobile(context))
+                if (!GetPlatform.isMobile)
                   Expanded(
                     flex: 2,
                     child: StorageDetails(),

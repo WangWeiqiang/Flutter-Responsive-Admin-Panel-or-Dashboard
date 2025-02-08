@@ -3,7 +3,7 @@ import 'package:admin/models/theme_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-
+import 'package:get/get.dart';
 import '../../../constants.dart';
 
 class FileInfoCard extends StatelessWidget {
@@ -16,11 +16,10 @@ class FileInfoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Provider.of<ThemeNotifier>(context).currentTheme;
     return Container(
       padding: EdgeInsets.all(defaultPadding),
       decoration: BoxDecoration(
-        color: theme.cardColor,
+        color: Get.theme.cardColor,
         borderRadius: const BorderRadius.all(Radius.circular(10)),
       ),
       child: Column(
@@ -35,7 +34,7 @@ class FileInfoCard extends StatelessWidget {
                 height: 40,
                 width: 40,
                 decoration: BoxDecoration(
-                  color: theme.canvasColor,
+                  color: Get.theme.canvasColor,
                   borderRadius: const BorderRadius.all(Radius.circular(10)),
                 ),
                 child: SvgPicture.asset(
@@ -44,7 +43,7 @@ class FileInfoCard extends StatelessWidget {
                       info.color ?? Colors.black, BlendMode.srcIn),
                 ),
               ),
-              Icon(Icons.more_vert, color: theme.primaryColor)
+              Icon(Icons.more_vert, color: Get.theme.primaryColor)
             ],
           ),
           Text(

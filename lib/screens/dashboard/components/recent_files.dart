@@ -1,10 +1,8 @@
 import 'package:admin/models/recent_file.dart';
-import 'package:admin/models/theme_notifier.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:provider/provider.dart';
-
+import 'package:get/get.dart';
 import '../../../constants.dart';
 
 class RecentFiles extends StatelessWidget {
@@ -14,11 +12,10 @@ class RecentFiles extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Provider.of<ThemeNotifier>(context).currentTheme;
     return Container(
       padding: EdgeInsets.all(defaultPadding),
       decoration: BoxDecoration(
-        color: theme.cardColor,
+        color: Get.theme.cardColor,
         borderRadius: const BorderRadius.all(Radius.circular(10)),
       ),
       child: Column(

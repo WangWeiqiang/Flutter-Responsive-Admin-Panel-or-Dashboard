@@ -2,7 +2,9 @@ import 'package:admin/controllers/menu_app_controller.dart';
 import 'package:admin/models/theme_notifier.dart';
 import 'package:admin/screens/main/main_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+import 'common/localization/translations/translations.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,7 +18,10 @@ class MyApp extends StatelessWidget {
       create: (_) => ThemeNotifier(),
       child: Consumer<ThemeNotifier>(
         builder: (context, themeNotifier, child) {
-          return MaterialApp(
+          return GetMaterialApp(
+            translations: Translation(),
+            locale: Locale('en', 'US'),
+            fallbackLocale: Locale('en', 'US'),
             debugShowCheckedModeBanner: false,
             title: 'Flutter Admin Panel',
             theme: themeNotifier.currentTheme,
