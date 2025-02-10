@@ -1,3 +1,4 @@
+import 'package:admin/common/routes/pages.dart';
 import 'package:admin/controllers/menu_app_controller.dart';
 import 'package:admin/models/theme_notifier.dart';
 import 'package:admin/screens/main/main_screen.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Flutter Admin Panel',
             theme: themeNotifier.currentTheme,
+            getPages: AppPages.pages,
             home: MultiProvider(
               providers: [
                 Provider<ThemeData>(

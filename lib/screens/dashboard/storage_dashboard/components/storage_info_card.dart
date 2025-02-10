@@ -1,19 +1,17 @@
-import 'package:admin/models/theme_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:provider/provider.dart';
 
-import '../../../constants.dart';
+import '../../../../constants.dart';
 
 class StorageInfoCard extends StatelessWidget {
-  const StorageInfoCard({
+  StorageInfoCard({
     Key? key,
     required this.title,
     required this.svgSrc,
     required this.amountOfFiles,
     required this.numOfFiles,
-  }) : super(key: key);
+  });
 
   final String title, svgSrc, amountOfFiles;
   final int numOfFiles;
@@ -27,7 +25,7 @@ class StorageInfoCard extends StatelessWidget {
         color: Get.theme.canvasColor,
         border: Border.all(
           width: 2,
-          color: Get.theme.cardColor,
+          color: Get.theme.canvasColor,
         ),
         borderRadius: const BorderRadius.all(
           Radius.circular(defaultPadding),
@@ -53,6 +51,7 @@ class StorageInfoCard extends StatelessWidget {
                   ),
                   Text(
                     "$numOfFiles Files",
+                    //style: Theme.of(context).textTheme.titleMedium,
                   ),
                 ],
               ),

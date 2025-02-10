@@ -1,7 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
+import '../../../../constants.dart';
 
 class Chart extends StatelessWidget {
   const Chart({
@@ -10,6 +10,7 @@ class Chart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData theme = Theme.of(context);
     return SizedBox(
       height: 200,
       child: Stack(
@@ -29,11 +30,7 @@ class Chart extends StatelessWidget {
                 SizedBox(height: defaultPadding),
                 Text(
                   "29.1",
-                  style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                        height: 0.5,
-                      ),
+                  style: theme.textTheme.bodyLarge,
                 ),
                 Text("of 128GB")
               ],

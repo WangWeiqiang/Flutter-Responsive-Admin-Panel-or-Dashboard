@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
-import '../../../constants.dart';
+import '../../../../constants.dart';
 import 'chart.dart';
 import 'storage_info_card.dart';
 
@@ -14,6 +14,7 @@ class StorageDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData theme = Theme.of(context);
     return Container(
       padding: EdgeInsets.all(defaultPadding),
       decoration: BoxDecoration(
@@ -25,10 +26,7 @@ class StorageDetails extends StatelessWidget {
         children: [
           Text(
             "Storage Details",
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-            ),
+            style: theme.textTheme.titleLarge,
           ),
           SizedBox(height: defaultPadding),
           Chart(),

@@ -3,7 +3,7 @@ import 'package:admin/models/recent_file.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import '../../../constants.dart';
+import '../../../../constants.dart';
 
 class RecentFiles extends StatelessWidget {
   const RecentFiles({
@@ -23,7 +23,7 @@ class RecentFiles extends StatelessWidget {
         children: [
           Text(
             "Recent Files",
-            style: Theme.of(context).textTheme.titleMedium,
+            style: Theme.of(context).textTheme.titleLarge,
           ),
           SizedBox(
             width: double.infinity,

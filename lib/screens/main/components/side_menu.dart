@@ -1,8 +1,6 @@
-import 'package:admin/models/theme_notifier.dart';
+import 'package:admin/common/routes/pages.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:provider/provider.dart';
 import 'package:admin/common/theme/theme.dart' as adminTheme;
 
 class SideMenu extends StatelessWidget {
@@ -10,7 +8,7 @@ class SideMenu extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  late RxBool isDarkMode = false.obs;
+  final RxBool isDarkMode = false.obs;
 
   changeTheme() {
     isDarkMode.value = !isDarkMode.value;
@@ -32,26 +30,56 @@ class SideMenu extends StatelessWidget {
             title: "Dashboard".tr,
             icon: Icons.dashboard,
             press: () {},
+            children: [
+              DrawerListTile(
+                title: "Storage".tr,
+                icon: Icons.analytics,
+                press: () {
+                  Get.toNamed(Routes.STORAGEDASHBOARD);
+                },
+              ).marginOnly(left: 20),
+              DrawerListTile(
+                title: "Marketing".tr,
+                icon: Icons.shopping_cart,
+                press: () {
+                  Get.toNamed(Routes.MARKETINGDASHBOARD);
+                },
+              ).marginOnly(left: 20),
+              DrawerListTile(
+                title: "Orders".tr,
+                icon: Icons.shopping_bag,
+                press: () {},
+              ).marginOnly(left: 20),
+              DrawerListTile(
+                title: "Revenue".tr,
+                icon: Icons.money,
+                press: () {},
+              ).marginOnly(left: 20),
+            ],
           ),
           DrawerListTile(
             title: "Transaction".tr,
             icon: Icons.swap_horiz,
             press: () {},
+            children: [],
           ),
           DrawerListTile(
             title: "Task".tr,
             icon: Icons.assignment,
             press: () {},
+            children: [],
           ),
           DrawerListTile(
             title: "Documents".tr,
             icon: Icons.folder,
             press: () {},
+            children: [],
           ),
           DrawerListTile(
             title: "Store".tr,
             icon: Icons.store,
             press: () {},
+            children: [],
           ),
           DrawerListTile(
             title: "Notification".tr,
@@ -86,13 +114,33 @@ class SideMenu extends StatelessWidget {
               ),
               IconButton(
                 onPressed: () {
-                  Get.locale == Locale('en', 'US')
-                      ? Get.updateLocale(Locale('zh', 'CN'))
-                      : Get.updateLocale(Locale('en', 'US'));
+                  Get.bottomSheet(
+                    Container(
+                      color: Get.theme.cardColor,
+                      child: Wrap(
+                        children: <Widget>[
+                          ListTile(
+                            leading: Icon(Icons.language),
+                            title: Text('English'),
+                            onTap: () {
+                              Get.updateLocale(Locale('en', 'US'));
+                              Get.back();
+                            },
+                          ),
+                          ListTile(
+                            leading: Icon(Icons.language),
+                            title: Text('中文'),
+                            onTap: () {
+                              Get.updateLocale(Locale('zh', 'CN'));
+                              Get.back();
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
                 },
-                icon: Get.locale == Locale('en', 'US')
-                    ? Icon(Icons.language)
-                    : Icon(Icons.language),
+                icon: Icon(Icons.sign_language_sharp),
               ),
             ],
           ),
@@ -109,23 +157,21 @@ class ProfileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Provider.of<ThemeNotifier>(context).currentTheme;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
           decoration: BoxDecoration(
-            //cicle shape
             shape: BoxShape.circle,
-            color: theme.cardColor,
+            color: Get.theme.cardColor,
             border: Border.all(
-              color: theme.cardColor,
+              color: Get.theme.cardColor,
               width: 5,
             ),
           ),
           child: CircleAvatar(
-            radius: 50,
-            backgroundColor: theme.cardColor,
+            radius: 20,
+            backgroundColor: Get.theme.cardColor,
             backgroundImage: AssetImage("assets/images/profile_pic.png"),
           ),
         ),
@@ -147,28 +193,53 @@ class ProfileCard extends StatelessWidget {
 class DrawerListTile extends StatelessWidget {
   const DrawerListTile({
     Key? key,
-    // For selecting those three line once press "Command+D"
     required this.title,
     required this.icon,
-    required this.press,
+    this.press,
+    this.children,
   }) : super(key: key);
 
   final String title;
   final IconData icon;
-  final VoidCallback press;
+  final VoidCallback? press;
+  final List<Widget>? children;
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      onTap: press,
-      horizontalTitleGap: 0.0,
-      leading: Icon(
-        icon,
-        size: 20,
-      ).marginOnly(right: 10),
-      title: Text(
-        title,
-      ),
-    );
+    if (children != null && children!.isNotEmpty) {
+      for (var child in children!) {
+        if (child is DrawerListTile) {
+          child.marginOnly(left: 30);
+        }
+      }
+    }
+    return children != null && children!.isNotEmpty
+        ? ExpansionTile(
+            title: ListTile(
+              horizontalTitleGap: 0.0,
+              leading: Icon(
+                icon,
+                size: 20,
+              ).marginOnly(right: 10),
+              title: Text(
+                title,
+              ),
+            ),
+            initiallyExpanded: false,
+            children: children!,
+            backgroundColor: Get.theme.canvasColor,
+            tilePadding: EdgeInsets.only(right: 10),
+          )
+        : ListTile(
+            onTap: press,
+            horizontalTitleGap: 0.0,
+            leading: Icon(
+              icon,
+              size: 20,
+            ).marginOnly(right: 10),
+            title: Text(
+              title,
+            ),
+          );
   }
 }

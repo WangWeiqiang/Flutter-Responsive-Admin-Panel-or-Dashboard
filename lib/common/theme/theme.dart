@@ -3,11 +3,17 @@ import 'package:flutter/material.dart';
 final ThemeData lightTheme = ThemeData(
   brightness: Brightness.light,
   primaryColor: Colors.blue,
-  scaffoldBackgroundColor: Colors.white,
+  scaffoldBackgroundColor: const Color.fromARGB(255, 255, 255, 255),
   cardColor: const Color.fromARGB(255, 240, 240, 240),
-  canvasColor: const Color.fromARGB(255, 255, 255, 255),
+  canvasColor: const Color.fromARGB(255, 249, 249, 249),
   drawerTheme: DrawerThemeData(
-    backgroundColor: Colors.white,
+    backgroundColor: const Color.fromARGB(255, 252, 252, 252),
+    shadowColor: const Color.fromARGB(255, 0, 0, 0),
+    shape: BeveledRectangleBorder(
+      borderRadius: BorderRadius.circular(8),
+    ),
+    elevation: 16,
+    surfaceTintColor: const Color.fromARGB(255, 180, 180, 180),
   ),
   appBarTheme: AppBarTheme(
     backgroundColor: Colors.blue,
@@ -33,11 +39,12 @@ final ThemeData lightTheme = ThemeData(
 final ThemeData darkTheme = ThemeData(
   brightness: Brightness.dark,
   primaryColor: Colors.blue,
-  scaffoldBackgroundColor: const Color.fromARGB(255, 0, 4, 43),
-  cardColor: const Color.fromARGB(255, 16, 22, 50),
-  canvasColor: const Color.fromARGB(135, 1, 0, 29),
+  scaffoldBackgroundColor: const Color.fromARGB(255, 10, 13, 21),
+  cardColor: const Color.fromARGB(255, 14, 17, 27),
+  canvasColor: const Color.fromARGB(134, 1, 0, 21),
   drawerTheme: DrawerThemeData(
-    backgroundColor: const Color.fromARGB(255, 16, 22, 50),
+    backgroundColor: const Color.fromARGB(255, 9, 13, 29),
+    surfaceTintColor: const Color.fromARGB(255, 1, 0, 24),
   ),
   appBarTheme: AppBarTheme(
     backgroundColor: Colors.blue,

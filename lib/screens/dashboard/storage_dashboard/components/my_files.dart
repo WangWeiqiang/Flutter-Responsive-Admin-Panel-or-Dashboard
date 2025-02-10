@@ -1,9 +1,8 @@
-import 'package:admin/models/my_files.dart';
 import 'package:admin/responsive.dart';
 import 'package:flutter/material.dart';
+import 'package:admin/models/my_files.dart';
 import 'package:get/get.dart';
-
-import '../../../constants.dart';
+import '../../../../constants.dart';
 import 'file_info_card.dart';
 
 class MyFiles extends StatelessWidget {
@@ -21,7 +20,7 @@ class MyFiles extends StatelessWidget {
           children: [
             Text(
               "My Files",
-              style: Get.textTheme.bodyMedium,
+              style: Get.textTheme.titleMedium,
             ),
             ElevatedButton.icon(
               style: TextButton.styleFrom(
@@ -41,7 +40,7 @@ class MyFiles extends StatelessWidget {
         Responsive(
           mobile: FileInfoCardGridView(
             crossAxisCount: _size.width < 650 ? 2 : 4,
-            childAspectRatio: _size.width < 650 && _size.width > 350 ? 1.3 : 1,
+            childAspectRatio: _size.width < 650 ? 1.3 : 1,
           ),
           tablet: FileInfoCardGridView(),
           desktop: FileInfoCardGridView(

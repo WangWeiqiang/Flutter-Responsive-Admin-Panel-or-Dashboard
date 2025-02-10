@@ -1,12 +1,12 @@
 import 'package:admin/controllers/menu_app_controller.dart';
 import 'package:admin/responsive.dart';
-import 'package:admin/screens/dashboard/storage_dashboard/storage_dashboard_screen.dart';
+import 'package:admin/screens/main/components/side_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'components/side_menu.dart';
+class MarketingDashboardScreen extends StatelessWidget {
+  const MarketingDashboardScreen({Key? key}) : super(key: key);
 
-class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +26,7 @@ class MainScreen extends StatelessWidget {
             Expanded(
               // It takes 5/6 part of the screen
               flex: 5,
-              child: StorageDashboardScreen(),
+              child: Container(),
             ),
           ],
         ),
